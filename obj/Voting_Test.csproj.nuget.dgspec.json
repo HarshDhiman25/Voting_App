@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Downloads\\Voting_Test\\Voting_Test.csproj": {}
+    "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\Voting_Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Downloads\\Voting_Test\\Voting_Test.csproj": {
+    "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\Voting_Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Downloads\\Voting_Test\\Voting_Test.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\Voting_Test.csproj",
         "projectName": "Voting_Test",
-        "projectPath": "C:\\Users\\Dell\\Downloads\\Voting_Test\\Voting_Test.csproj",
+        "projectPath": "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\Voting_Test.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Downloads\\Voting_Test\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +45,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNet.SignalR.Core": {
+              "target": "Package",
+              "version": "[2.4.3, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.4, )"
