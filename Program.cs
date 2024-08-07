@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Voting_Test;
 using Voting_Test.Data;
+using Voting_Test.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,5 +51,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
-
+app.MapHub<ChatHub>("/chatHub");
 app.Run();

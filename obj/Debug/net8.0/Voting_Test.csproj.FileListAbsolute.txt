@@ -1173,3 +1173,5 @@ C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.AspNet.Sign
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.Owin.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.Owin.Security.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Owin.dll
+C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\libman.json
+C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll

@@ -16,8 +16,6 @@ namespace Voting_Test.Models
 
         [Required]
         public Poll Poll { get; set; }
-
-        // Navigation property for votes
         public ICollection<Vote> Votes { get; set; } = new List<Vote>();
     }
 

@@ -1,8 +1,44 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Voting_Test.Models.Poll>
+
+@{
+    ViewData["Title"] = "Polls List";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Polls List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Created Date</th>
+            <th>End Date</th>
+            <th>Is Active</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="poll-@item.PollId">
+                <td>@item.Question</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.EndDate</td>
+                <td>@item.IsActive</td>
+                <td>
+                    <button type="button" onclick="vote(@item.PollId)" class="btn btn-danger btn-sm">Vote</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        function vote(pollId) {
+            // Replace this with actual voting logic
+            console.log("Vote button clicked for Poll ID:", pollId);
+            // Example: Redirect to a voting page
+            window.location.href = '@Url.Action("Vote", "Poll")?id=' + pollId;
+        }
+    </script>
+}
