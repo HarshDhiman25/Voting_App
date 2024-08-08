@@ -585,6 +585,7 @@ C:\Users\Dell\Downloads\Voting_Test\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Ra
 C:\Users\Dell\Downloads\Voting_Test\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\appsettings.json
+C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\libman.json
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Voting_Test.staticwebassets.runtime.json
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Voting_Test.exe
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Voting_Test.deps.json
@@ -889,6 +890,7 @@ C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\refs\WindowsBase.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Humanizer.dll
+C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.AspNet.SignalR.Core.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
@@ -934,6 +936,8 @@ C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.IdentityMod
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.NET.StringTools.dll
+C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.Owin.dll
+C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.Owin.Security.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
@@ -954,6 +958,7 @@ C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\NuGet.Packaging.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\NuGet.ProjectModel.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\NuGet.Protocol.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\NuGet.Versioning.dll
+C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Owin.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\SQLitePCLRaw.core.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\SQLitePCLRaw.provider.e_sqlite3.dll
@@ -967,6 +972,7 @@ C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.Configuration.
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.Memory.Data.dll
+C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
@@ -1169,9 +1175,3 @@ C:\Users\Dell\Documents\Github\Voting_App\obj\Debug\net8.0\refint\Voting_Test.dl
 C:\Users\Dell\Documents\Github\Voting_App\obj\Debug\net8.0\Voting_Test.pdb
 C:\Users\Dell\Documents\Github\Voting_App\obj\Debug\net8.0\Voting_Test.genruntimeconfig.cache
 C:\Users\Dell\Documents\Github\Voting_App\obj\Debug\net8.0\ref\Voting_Test.dll
-C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.AspNet.SignalR.Core.dll
-C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.Owin.dll
-C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Microsoft.Owin.Security.dll
-C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\Owin.dll
-C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\libman.json
-C:\Users\Dell\Documents\Github\Voting_App\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll

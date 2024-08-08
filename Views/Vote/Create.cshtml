@@ -1,0 +1,31 @@
+﻿@model Voting_Test.Models.Vote
+
+@{
+    ViewData["Title"] = "Create Vote";
+}
+
+<h1>Create Vote</h1>
+
+<h4>Vote</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label asp-for="PollId" class="control-label"></label>
+                <select asp-for="PollId" class="form-control" asp-items="ViewBag.PollId"></select>
+                <span asp-validation-for="PollId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PollingRoomId" class="control-label"></label>
+                <select asp-for="PollingRoomId" class="form-control" asp-items="ViewBag.PollingRoomId"></select>
+                <span asp-validation-for="PollingRoomId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Vote" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>

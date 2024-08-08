@@ -11,7 +11,7 @@ namespace Voting_Test.Data
         {
         }
         public DbSet<ApplicationUser>ApplicationUsers { get; set; }
-        public DbSet<Option> Options { get; set; }
+        public DbSet<PollingRoom> PollingRooms{ get; set; }
         public DbSet<Poll> Polls{ get; set; }
         public DbSet<Vote>Votes  { get; set; }
     }

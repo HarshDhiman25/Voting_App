@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Voting_Test.Data;
 
@@ -11,9 +12,11 @@ using Voting_Test.Data;
 namespace Voting_Test.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240807094440_pollingroom")]
+    partial class pollingroom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,7 +249,7 @@ namespace Voting_Test.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PollingRoomId")
+                    b.Property<int?>("PollingRoomId")
                         .HasColumnType("int");
 
                     b.Property<string>("Question")
@@ -389,13 +392,9 @@ namespace Voting_Test.Data.Migrations
 
             modelBuilder.Entity("Voting_Test.Models.Poll", b =>
                 {
-                    b.HasOne("Voting_Test.Models.PollingRoom", "PollingRoom")
+                    b.HasOne("Voting_Test.Models.PollingRoom", null)
                         .WithMany("Polls")
-                        .HasForeignKey("PollingRoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PollingRoom");
+                        .HasForeignKey("PollingRoomId");
                 });
 
             modelBuilder.Entity("Voting_Test.Models.Vote", b =>

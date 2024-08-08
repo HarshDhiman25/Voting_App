@@ -186,10 +186,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dell/Documents/Github/Voting_App/Views/AdminOptions/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5PcHRpb25zXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Dell/Documents/Github/Voting_App/Views/AdminPolls/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qb2xsc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -206,8 +202,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Dell/Documents/Github/Voting_App/Views/Home/PollsByRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQb2xsc0J5Um9vbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Dell/Documents/Github/Voting_App/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/Documents/Github/Voting_App/Views/PollingRoom/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9sbGluZ1Jvb21cY3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/Documents/Github/Voting_App/Views/PollingRoom/CreatePoll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9sbGluZ1Jvb21cQ3JlYXRlUG9sbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/Documents/Github/Voting_App/Views/PollingRoom/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9sbGluZ1Jvb21cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/Documents/Github/Voting_App/Views/PollingRoom/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9sbGluZ1Jvb21cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/Documents/Github/Voting_App/Views/PollingRoom/Polls.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9sbGluZ1Jvb21cUG9sbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dell/Documents/Github/Voting_App/Views/Polls/Create.cshtml]
@@ -236,6 +256,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Dell/Documents/Github/Voting_App/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/Documents/Github/Voting_App/Views/Vote/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm90ZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/Documents/Github/Voting_App/Views/Vote/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm90ZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/Documents/Github/Voting_App/Views/Vote/VoteList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm90ZVxWb3RlTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dell/Documents/Github/Voting_App/Views/Vote/_VoteTableRows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm90ZVxfVm90ZVRhYmxlUm93cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dell/Documents/Github/Voting_App/Views/_ViewImports.cshtml]

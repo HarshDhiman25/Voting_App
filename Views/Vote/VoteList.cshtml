@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Voting_Test.Models.Vote>
+
+@{
+    ViewData["Title"] = "Vote List";
+}
+
+<h1>Vote List</h1>
+
+<div id="voteListContainer">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Poll Question</th>
+                <th>Polling Room</th>
+                <th>Vote Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Poll.Question</td>
+                    <td>@item.PollingRoom.Name</td>
+                    <td>@item.VoteDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

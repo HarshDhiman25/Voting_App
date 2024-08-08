@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Voting_Test.Models.Vote>
+
+@foreach (var vote in Model)
+{
+    <tr>
+        <td>@vote.User.UserName</td>
+        <td>@vote.Poll.Question</td>
+        <td>@vote.PollingRoom.Name</td>
+        <td>@vote.VoteDate.ToString("g")</td> <!-- Formats the date to a readable format -->
+    </tr>
+}

@@ -1,17 +1,16 @@
-﻿@model IEnumerable<Voting_Test.Models.Poll>
+﻿@model IEnumerable<Voting_Test.Models.PollingRoom>
 
 @{
-    ViewData["Title"] = "Polls List";
+    ViewData["Title"] = "Home";
 }
 
-<h1>Polls List</h1>
+<h1>Polling Rooms</h1>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Question</th>
+            <th>Name</th>
             <th>Created Date</th>
-            <th>End Date</th>
             <th>Is Active</th>
             <th></th>
         </tr>
@@ -19,26 +18,14 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr id="poll-@item.PollId">
-                <td>@item.Question</td>
+            <tr>
+                <td>@item.Name</td>
                 <td>@item.CreatedDate</td>
-                <td>@item.EndDate</td>
                 <td>@item.IsActive</td>
                 <td>
-                    <button type="button" onclick="vote(@item.PollId)" class="btn btn-danger btn-sm">Vote</button>
+                    <a asp-action="PollsByRoom" asp-route-id="@item.PollingRoomId" class="btn btn-info btn-sm">View Polls</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-@section Scripts {
-    <script>
-        function vote(pollId) {
-            // Replace this with actual voting logic
-            console.log("Vote button clicked for Poll ID:", pollId);
-            // Example: Redirect to a voting page
-            window.location.href = '@Url.Action("Vote", "Poll")?id=' + pollId;
-        }
-    </script>
-}

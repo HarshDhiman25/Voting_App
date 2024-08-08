@@ -1,0 +1,52 @@
+﻿@model Voting_Test.Models.PollsByRoomViewModel
+
+@{
+    ViewData["Title"] = "Polls by Room";
+}
+
+<h1>Polls for Room</h1>
+
+@if (Model.Polls.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Created Date</th>
+                <th>End Date</th>
+                <th>Active</th>
+                <th>Vote</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var poll in Model.Polls)
+            {
+                <tr>
+                    <td>@poll.Question</td>
+                    <td>@poll.CreatedDate.ToString("d")</td>
+                    <td>@(poll.EndDate.HasValue ? poll.EndDate.Value.ToString("d") : "N/A")</td>
+                    <td>@(poll.IsActive ? "Yes" : "No")</td>
+                    <td>
+                        @if (poll.IsActive && !Model.UserHasVoted)
+                        {
+                            <form method="post" action="@Url.Action("Create", "Vote")">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="PollId" value="@poll.PollId" />
+                                <input type="hidden" name="PollingRoomId" value="@Model.PollingRoomId" />
+                                <button type="submit" class="btn btn-primary">Vote</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span>@(Model.UserHasVoted ? "You have already voted" : "N/A")</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No polls available for this room.</p>
+}

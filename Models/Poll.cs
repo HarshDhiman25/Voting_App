@@ -11,16 +11,17 @@ namespace Voting_Test.Models
 
         [Required(ErrorMessage = "The poll question is required.")]
         [StringLength(200, ErrorMessage = "The question cannot exceed 200 characters.")]
-        public string Question { get; set; } 
+        public string Question { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
         public DateTime? EndDate { get; set; }
 
-        public bool IsActive { get; set; } 
+        public bool IsActive { get; set; }
 
         // Navigation properties
-        public ICollection<Option> Options { get; set; } = new List<Option>();
+        public int? PollingRoomId { get; set; }
+        public PollingRoom PollingRoom { get; set; }
         public ICollection<Vote> Votes { get; set; } = new List<Vote>();
     }
 }

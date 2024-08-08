@@ -5,25 +5,23 @@
     public class Vote
     {
         [Key]
-        public int VoteId { get; set; } 
+        public int VoteId { get; set; }
 
         [Required]
-        public string UserId { get; set; } 
+        public string UserId { get; set; }
 
         [Required]
-        public ApplicationUser User { get; set; } 
+        public ApplicationUser User { get; set; }
 
         [Required]
-        public int OptionId { get; set; } 
+        public int PollingRoomId { get; set; }
+        public PollingRoom PollingRoom { get; set; }
 
         [Required]
-        public Option Option { get; set; } 
+        public int PollId { get; set; }
+        public Poll Poll { get; set; }
 
-        [Required]
-        public int PollId { get; set; } 
-
-        [Required]
-        public Poll Poll { get; set; } 
+        public DateTime VoteDate { get; set; }
     }
 
 }
