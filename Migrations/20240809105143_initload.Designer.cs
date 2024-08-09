@@ -9,11 +9,11 @@ using Voting_Test.Data;
 
 #nullable disable
 
-namespace Voting_Test.Data.Migrations
+namespace Voting_Test.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240807105230_ew")]
-    partial class ew
+    [Migration("20240809105143_initload")]
+    partial class initload
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -275,6 +275,9 @@ namespace Voting_Test.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -304,7 +307,7 @@ namespace Voting_Test.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("VoteDate")
                         .HasColumnType("datetime2");
@@ -314,6 +317,8 @@ namespace Voting_Test.Data.Migrations
                     b.HasIndex("PollId");
 
                     b.HasIndex("PollingRoomId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Votes");
                 });
@@ -390,9 +395,11 @@ namespace Voting_Test.Data.Migrations
 
             modelBuilder.Entity("Voting_Test.Models.Poll", b =>
                 {
-                    b.HasOne("Voting_Test.Models.PollingRoom", null)
+                    b.HasOne("Voting_Test.Models.PollingRoom", "PollingRoom")
                         .WithMany("Polls")
                         .HasForeignKey("PollingRoomId");
+
+                    b.Navigation("PollingRoom");
                 });
 
             modelBuilder.Entity("Voting_Test.Models.Vote", b =>
@@ -409,9 +416,17 @@ namespace Voting_Test.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Voting_Test.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Poll");
 
                     b.Navigation("PollingRoom");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Voting_Test.Models.Poll", b =>

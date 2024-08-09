@@ -138,18 +138,29 @@ public class PollingRoomController : Controller
     {
         var room = await _context.PollingRooms
             .Include(r => r.Polls)
+            .ThenInclude(p => p.Votes)  // Include votes related to polls
             .FirstOrDefaultAsync(r => r.PollingRoomId == id);
+
         if (room == null)
         {
             return NotFound();
         }
 
+        // Remove votes associated with the polls
+        foreach (var poll in room.Polls)
+        {
+            _context.Votes.RemoveRange(poll.Votes);
+        }
+
+        // Remove polls and polling room
         _context.Polls.RemoveRange(room.Polls);
         _context.PollingRooms.Remove(room);
         await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
     }
+
+    // Other actions...
 
     private bool PollingRoomExists(int id)
     {

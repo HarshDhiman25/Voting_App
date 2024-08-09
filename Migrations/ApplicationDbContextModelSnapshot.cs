@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Voting_Test.Data;
 
 #nullable disable
 
-namespace Voting_Test.Data.Migrations
+namespace Voting_Test.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240806111313_initload2")]
-    partial class initload2
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,29 +229,6 @@ namespace Voting_Test.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Voting_Test.Models.Option", b =>
-                {
-                    b.Property<int>("OptionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OptionId"));
-
-                    b.Property<int>("PollId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("OptionId");
-
-                    b.HasIndex("PollId");
-
-                    b.ToTable("Options");
-                });
-
             modelBuilder.Entity("Voting_Test.Models.Poll", b =>
                 {
                     b.Property<int>("PollId")
@@ -272,6 +246,9 @@ namespace Voting_Test.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("PollingRoomId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Question")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -279,7 +256,36 @@ namespace Voting_Test.Data.Migrations
 
                     b.HasKey("PollId");
 
+                    b.HasIndex("PollingRoomId");
+
                     b.ToTable("Polls");
+                });
+
+            modelBuilder.Entity("Voting_Test.Models.PollingRoom", b =>
+                {
+                    b.Property<int>("PollingRoomId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PollingRoomId"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("PollingRoomId");
+
+                    b.ToTable("PollingRooms");
                 });
 
             modelBuilder.Entity("Voting_Test.Models.Vote", b =>
@@ -290,21 +296,24 @@ namespace Voting_Test.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VoteId"));
 
-                    b.Property<int>("OptionId")
+                    b.Property<int>("PollId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PollId")
+                    b.Property<int>("PollingRoomId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("VoteDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("VoteId");
 
-                    b.HasIndex("OptionId");
-
                     b.HasIndex("PollId");
+
+                    b.HasIndex("PollingRoomId");
 
                     b.HasIndex("UserId");
 
@@ -381,28 +390,26 @@ namespace Voting_Test.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Voting_Test.Models.Option", b =>
+            modelBuilder.Entity("Voting_Test.Models.Poll", b =>
                 {
-                    b.HasOne("Voting_Test.Models.Poll", "Poll")
-                        .WithMany("Options")
-                        .HasForeignKey("PollId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Voting_Test.Models.PollingRoom", "PollingRoom")
+                        .WithMany("Polls")
+                        .HasForeignKey("PollingRoomId");
 
-                    b.Navigation("Poll");
+                    b.Navigation("PollingRoom");
                 });
 
             modelBuilder.Entity("Voting_Test.Models.Vote", b =>
                 {
-                    b.HasOne("Voting_Test.Models.Option", "Option")
-                        .WithMany("Votes")
-                        .HasForeignKey("OptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Voting_Test.Models.Poll", "Poll")
                         .WithMany("Votes")
                         .HasForeignKey("PollId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Voting_Test.Models.PollingRoom", "PollingRoom")
+                        .WithMany()
+                        .HasForeignKey("PollingRoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -412,23 +419,21 @@ namespace Voting_Test.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Option");
-
                     b.Navigation("Poll");
+
+                    b.Navigation("PollingRoom");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Voting_Test.Models.Option", b =>
+            modelBuilder.Entity("Voting_Test.Models.Poll", b =>
                 {
                     b.Navigation("Votes");
                 });
 
-            modelBuilder.Entity("Voting_Test.Models.Poll", b =>
+            modelBuilder.Entity("Voting_Test.Models.PollingRoom", b =>
                 {
-                    b.Navigation("Options");
-
-                    b.Navigation("Votes");
+                    b.Navigation("Polls");
                 });
 #pragma warning restore 612, 618
         }

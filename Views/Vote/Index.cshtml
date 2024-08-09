@@ -2,17 +2,46 @@
 
 @{
     ViewData["Title"] = "Vote List";
+    var voteStats = ViewBag.VoteStats as List<Voting_Test.Models.ViewModels.VoteStatisticsViewModel>;
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    
-    <link rel="stylesheet" href="~/css/site.css"> <!-- Add this line if you use an external CSS file -->
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signalr/6.0.0/signalr.min.js"></script>
 </head>
-<body>
+<body/>
     <h1>Vote List</h1>
 
+    <h2>Vote Statistics</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Poll</th>
+                <th>Polling Room</th>
+                <th>Total Votes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (voteStats != null)
+            {
+                foreach (var stat in voteStats)
+                {
+                    <tr>
+                        <td>@stat.PollQuestion</td>
+                        <td>@stat.PollingRoomName</td>
+                        <td>@stat.TotalVotes</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <h2>Detailed Vote List</h2>
     <table id="voteTable" class="table">
         <thead>
             <tr>
@@ -35,8 +64,6 @@
         </tbody>
     </table>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/signalr/6.0.0/signalr.min.js"></script>
     <script>
         var dataTable;
 
@@ -62,16 +89,15 @@
             fetch("/Vote/Index")
                 .then(response => response.text())
                 .then(data => {
-                    dataTable.destroy();
+                    $('#voteTable').DataTable().destroy(); // Destroy existing table
                     document.getElementById("voteTableBody").innerHTML = data;
-                    dataTable = $('#voteTable').DataTable({
+                    dataTable = $('#voteTable').DataTable({ // Reinitialize DataTable
                         "order": [[3, "desc"]]
                     });
                 })
                 .catch(error => console.error("Error fetching vote list:", error));
         }
 
-        setInterval(fetchVoteList, 1000);
+        setInterval(fetchVoteList, 1000); // Polling interval to update the list
     </script>
-</body>
 </html>
