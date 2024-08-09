@@ -16,7 +16,6 @@ public class AdminPollsController : Controller
         _context = context;
     }
 
-    // GET: AdminPolls
     public async Task<IActionResult> Index()
     {
         if (!User.Identity.IsAuthenticated)
@@ -26,10 +25,10 @@ public class AdminPollsController : Controller
 
         var currentDate = DateTime.Now;
 
-        // Get all polls
+      
         var allPolls = await _context.Polls.ToListAsync();
 
-        // Disable expired polls
+      
         foreach (var poll in allPolls.Where(p => p.EndDate < currentDate && p.IsActive))
         {
             poll.IsActive = false;
@@ -37,7 +36,7 @@ public class AdminPollsController : Controller
         }
         await _context.SaveChangesAsync();
 
-        // Fetch active polls
+       
         var polls = allPolls.Where(p => p.EndDate >= currentDate && p.IsActive).ToList();
 
         return View(polls);

@@ -51,7 +51,7 @@
                         },
                         success: function (result) {
                             if (result.success) {
-                                $('#poll-' + pollId).remove(); // Remove the row from the table
+                                $('#poll-' + pollId).remove(); 
                                 alert(result.message);
                             } else {
                                 alert("An error occurred while deleting the poll.");

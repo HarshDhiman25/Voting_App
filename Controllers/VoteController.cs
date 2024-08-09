@@ -36,13 +36,13 @@ namespace Voting_Test.Controllers
                 return Unauthorized();
             }
 
-            // Check if the user has already voted in this polling room
+           
             var hasVoted = await _context.Votes
                 .AnyAsync(v => v.UserId == userId && v.PollingRoomId == PollingRoomId);
 
             if (hasVoted)
             {
-                // Optionally, handle the case where the user has already voted
+             
                 ModelState.AddModelError(string.Empty, "You have already voted in this polling room.");
                 ViewData["PollId"] = new SelectList(_context.Polls, "PollId", "Question", PollId);
                 ViewData["PollingRoomId"] = new SelectList(_context.PollingRooms, "PollingRoomId", "Name", PollingRoomId);
@@ -57,14 +57,14 @@ namespace Voting_Test.Controllers
                 VoteDate = DateTime.Now
             };
 
-            // Add the vote to the context and save changes
+        
             _context.Add(vote);
             await _context.SaveChangesAsync();
 
-            // Notify clients about the new vote
+            
             await _hubContext.Clients.All.SendAsync("ReceiveVoteUpdate");
 
-            // Redirect to the PollsByRoom action in HomeController
+           
             return RedirectToAction("PollsByRoom", "Home", new { id = PollingRoomId });
         }
         public async Task<IActionResult> Index()
