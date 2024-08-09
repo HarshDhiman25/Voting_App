@@ -80,5 +80,8 @@ namespace Voting_Test.Controllers
                 .ToListAsync();
             return PartialView("_VoteTableRows", votes);
         }
+
+
+
     }
 }

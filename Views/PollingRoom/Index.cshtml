@@ -1,4 +1,4 @@
-﻿@* @model IEnumerable<Voting_Test.Models.PollingRoom>
+﻿@model IEnumerable<Voting_Test.Models.PollingRoom>
 
 @{
     ViewData["Title"] = "Polling Rooms List";
@@ -16,47 +16,7 @@
             <th>Name</th>
             <th>Created Date</th>
             <th>Is Active</th>
-            <th>Buttons</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(item.Name, "Polls", new { id = item.PollingRoomId })</td>
-                <td>@item.CreatedDate</td>
-                <td>@item.IsActive</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.PollingRoomId" class="btn btn-warning btn-sm">Edit</a> |
-                    <form asp-action="DeleteConfirmed" asp-route-id="@item.PollingRoomId" method="post" style="display:inline;">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
- *@
- @model IEnumerable<Voting_Test.Models.PollingRoom>
-
-@{
-    ViewData["Title"] = "Polling Rooms List";
-}
-
-<h1>Polling Rooms List</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New Polling Room</a>
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Created Date</th>
-            <th>Is Active</th>
-            <th>Buttons</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>

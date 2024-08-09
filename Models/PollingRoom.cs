@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Voting_Test.Models
 {
@@ -13,6 +15,9 @@ namespace Voting_Test.Models
         public DateTime CreatedDate { get; set; }
 
         public bool IsActive { get; set; }
+
+       
+        public DateTime? EndDate { get; set; }
 
         public ICollection<Poll> Polls { get; set; }
     }

@@ -20,8 +20,21 @@ public class PollingRoomController : Controller
         {
             return Redirect("/Identity/Account/Login");
         }
-        var rooms = await _context.PollingRooms.ToListAsync();
-        return View(rooms);
+
+        var currentDate = DateTime.Now;
+
+        var allPollingRooms = await _context.PollingRooms.ToListAsync();
+
+        foreach (var room in allPollingRooms.Where(r => r.EndDate < currentDate && r.IsActive))
+        {
+            room.IsActive = false;
+            _context.Update(room);
+        }
+
+        var activePollingRooms = allPollingRooms.Where(r => r.IsActive).ToList();
+        await _context.SaveChangesAsync();
+
+        return View(activePollingRooms);
     }
 
     public IActionResult Create()
@@ -118,35 +131,36 @@ public class PollingRoomController : Controller
 
         return View(room);
     }
+
     [HttpPost, ActionName("DeleteConfirmed")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         var room = await _context.PollingRooms
-            .Include(r => r.Polls) // Include related polls
+            .Include(r => r.Polls)
             .FirstOrDefaultAsync(r => r.PollingRoomId == id);
         if (room == null)
         {
             return NotFound();
         }
 
-        // Remove associated polls first
         _context.Polls.RemoveRange(room.Polls);
-
-        // Remove polling room
         _context.PollingRooms.Remove(room);
         await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
     }
 
-
     private bool PollingRoomExists(int id)
     {
         return _context.PollingRooms.Any(e => e.PollingRoomId == id);
     }
 
-    // Add methods for handling polls within a specific polling room
+    private bool PollingExists(int id)
+    {
+        return _context.Polls.Any(e => e.PollId == id);
+    }
+
     public async Task<IActionResult> Polls(int id)
     {
         if (!User.Identity.IsAuthenticated)
@@ -167,6 +181,25 @@ public class PollingRoomController : Controller
         ViewData["PollingRoomName"] = room.Name;
 
         return View(polls);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditPoll(int id)
+    {
+        if (!User.Identity.IsAuthenticated)
+        {
+            return Redirect("/Identity/Account/Login");
+        }
+        var poll = await _context.Polls.FindAsync(id);
+        if (poll == null)
+        {
+            return NotFound();
+        }
+
+        ViewData["PollingRoomId"] = poll.PollingRoomId;
+
+        return View(poll);
     }
 
     public IActionResult CreatePoll(int pollingRoomId)

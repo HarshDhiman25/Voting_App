@@ -1,68 +1,68 @@
-﻿@model IEnumerable<Voting_Test.Models.Poll>
+﻿    @model IEnumerable<Voting_Test.Models.Poll>
 
-@{
-    ViewData["Title"] = "Polls in " + ViewData["PollingRoomName"];
-}
+    @{
+        ViewData["Title"] = "Polls in " + ViewData["PollingRoomName"];
+    }
 
-<h1>@ViewData["Title"]</h1>
+    <h1>@ViewData["Title"]</h1>
 
-<p>
-    <a asp-action="CreatePoll" asp-route-pollingRoomId="@ViewData["PollingRoomId"]" class="btn btn-primary">Create New Poll</a>
-</p>
+    <p>
+        <a asp-action="CreatePoll" asp-route-pollingRoomId="@ViewData["PollingRoomId"]" class="btn btn-primary">Create New Poll</a>
+    </p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Question</th>
-            <th>Created Date</th>
-            <th>End Date</th>
-            <th>Is Active</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr id="poll-@item.PollId">
-                <td>@item.Question</td>
-                <td>@item.CreatedDate</td>
-                <td>@item.EndDate</td>
-                <td>@item.IsActive</td>
-                <td>
-                    <a asp-action="EditPoll" asp-route-id="@item.PollId" class="btn btn-warning btn-sm">Edit</a> |
-                    <button type="button" onclick="deletePoll(@item.PollId)" class="btn btn-danger btn-sm">Delete</button>
-                </td>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Created Date</th>
+                <th>End Date</th>
+                <th>Is Active</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="poll-@item.PollId">
+                    <td>@item.Question</td>
+                    <td>@item.CreatedDate</td>
+                    <td>@item.EndDate</td>
+                    <td>@item.IsActive</td>
+                    <td>
+                     
+                        <button type="button" onclick="deletePoll(@item.PollId)" class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-@section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function deletePoll(pollId) {
-            if (confirm("Are you sure you want to delete this poll?")) {
-                $.ajax({
-                    url: '@Url.Action("DeletePoll", "PollingRoom")',
-                    type: 'POST',
-                    data: {
-                        id: pollId,
-                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
-                    },
-                    success: function (result) {
-                        if (result.success) {
-                            $('#poll-' + pollId).remove(); // Remove the row from the table
-                            alert(result.message);
-                        } else {
+    @section Scripts {
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function deletePoll(pollId) {
+                if (confirm("Are you sure you want to delete this poll?")) {
+                    $.ajax({
+                        url: '@Url.Action("DeletePoll", "PollingRoom")',
+                        type: 'POST',
+                        data: {
+                            id: pollId,
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function (result) {
+                            if (result.success) {
+                                $('#poll-' + pollId).remove(); // Remove the row from the table
+                                alert(result.message);
+                            } else {
+                                alert("An error occurred while deleting the poll.");
+                            }
+                        },
+                        error: function () {
                             alert("An error occurred while deleting the poll.");
                         }
-                    },
-                    error: function () {
-                        alert("An error occurred while deleting the poll.");
-                    }
-                });
+                    });
+                }
             }
-        }
-    </script>
-}
+        </script>
+    }
     

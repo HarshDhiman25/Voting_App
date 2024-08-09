@@ -17,17 +17,32 @@ public class AdminPollsController : Controller
     }
 
     // GET: AdminPolls
-        public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index()
     {
         if (!User.Identity.IsAuthenticated)
         {
             return Redirect("/Identity/Account/Login");
         }
-        var polls = await _context.Polls.ToListAsync();
-            return View(polls);
-        }
 
-  
+        var currentDate = DateTime.Now;
+
+        // Get all polls
+        var allPolls = await _context.Polls.ToListAsync();
+
+        // Disable expired polls
+        foreach (var poll in allPolls.Where(p => p.EndDate < currentDate && p.IsActive))
+        {
+            poll.IsActive = false;
+            _context.Update(poll);
+        }
+        await _context.SaveChangesAsync();
+
+        // Fetch active polls
+        var polls = allPolls.Where(p => p.EndDate >= currentDate && p.IsActive).ToList();
+
+        return View(polls);
+    }
+
     public IActionResult Create()
     {
         if (!User.Identity.IsAuthenticated)
@@ -37,7 +52,6 @@ public class AdminPollsController : Controller
         return View();
     }
 
-  
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("Question,EndDate,IsActive")] Poll? poll)
@@ -52,7 +66,6 @@ public class AdminPollsController : Controller
         return View(poll);
     }
 
-   
     public async Task<IActionResult> Edit(int? id)
     {
         if (!User.Identity.IsAuthenticated)
@@ -72,10 +85,9 @@ public class AdminPollsController : Controller
         return View(poll);
     }
 
-   
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("PollId,Question,CreatedDate,EndDate,IsActive")] Poll poll)
+    public async Task<IActionResult> EditPoll(int id, [Bind("PollId,Question,EndDate,IsActive")] Poll poll)
     {
         if (id != poll.PollId)
         {
@@ -102,10 +114,10 @@ public class AdminPollsController : Controller
             }
             return RedirectToAction(nameof(Index));
         }
+
         return View(poll);
     }
 
-   
     public async Task<IActionResult> Delete(int? id)
     {
         if (!User.Identity.IsAuthenticated)
@@ -139,8 +151,7 @@ public class AdminPollsController : Controller
 
         _context.Polls.Remove(poll);
         await _context.SaveChangesAsync();
-
-        return Json(new { success = true, message = "Poll deleted successfully." });
+        return RedirectToAction(nameof(Index));
     }
 
     private bool PollExists(int id)

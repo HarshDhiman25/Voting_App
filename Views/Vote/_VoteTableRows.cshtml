@@ -1,11 +1,90 @@
 ﻿@model IEnumerable<Voting_Test.Models.Vote>
 
-@foreach (var vote in Model)
-{
-    <tr>
-        <td>@vote.User.UserName</td>
-        <td>@vote.Poll.Question</td>
-        <td>@vote.PollingRoom.Name</td>
-        <td>@vote.VoteDate.ToString("g")</td> <!-- Formats the date to a readable format -->
-    </tr>
+@{
+    ViewData["Title"] = "Vote List";
 }
+
+<h1>Vote List</h1>
+
+<table id="voteTable" class="display table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Poll Question</th>
+            <th>Polling Room</th>
+            <th>Vote Date</th>
+        </tr>
+    </thead>
+    <tbody id="voteTableBody">
+        @foreach (var vote in Model)
+        {
+            <tr>
+                <td>@vote.User.UserName</td>
+                <td>@vote.Poll.Question</td>
+                <td>@vote.PollingRoom.Name</td>
+                <td>@vote.VoteDate</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Include DataTables CSS and JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/signalr/6.0.0/signalr.min.js"></script>
+
+<script>
+    var dataTable;
+
+    $(document).ready(function () {
+        // Initialize DataTable
+        dataTable = $('#voteTable').DataTable({
+            "order": [[3, "desc"]], // Sort by Vote Date descending
+            "pageLength": 10,       // Set default number of rows per page
+            "searching": true,      // Enable searching
+            "ordering": true        // Enable ordering
+        });
+
+        // Establish a connection with SignalR
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/voteHub")
+            .build();
+
+        // Start the connection and handle any errors
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        // Handle the SignalR message to update the Vote List
+        connection.on("ReceiveVoteUpdate", function () {
+            fetchVoteList();
+        });
+
+        // Function to fetch the updated vote list from the server
+        function fetchVoteList() {
+            fetch("/Vote/Index")
+                .then(response => response.text())
+                .then(data => {
+                    // Destroy DataTable before updating it
+                    dataTable.destroy();
+
+                    // Update the table body with the new data
+                    document.getElementById("voteTableBody").innerHTML = data;
+
+                    // Reinitialize DataTable after updating the data
+                    dataTable = $('#voteTable').DataTable({
+                        "order": [[3, "desc"]],
+                        "pageLength": 10,
+                        "searching": true,
+                        "ordering": true
+                    });
+                })
+                .catch(error => console.error("Error fetching vote list:", error));
+        }
+
+        // Set up an interval to refresh the vote list every second
+        setInterval(fetchVoteList, 1000); // 1000 milliseconds = 1 second
+    });
+</script>
