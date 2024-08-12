@@ -14,5 +14,6 @@ namespace Voting_Test.Data
         public DbSet<PollingRoom> PollingRooms{ get; set; }
         public DbSet<Poll> Polls{ get; set; }
         public DbSet<Vote>Votes  { get; set; }
+        public DbSet<PollWinners> PollWinnerss { get; set; }
     }
 }

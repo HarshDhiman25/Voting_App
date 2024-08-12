@@ -45,7 +45,7 @@ namespace Voting_Test.Controllers
             {
                 PollingRoomId = id,
                 Polls = await _context.Polls
-                    .Where(p => p.PollingRoomId == id)
+                    .Where(p => p.PollingRoomId == id && (p.EndDate == null || p.EndDate > DateTime.Now))
                     .ToListAsync(),
                 UserHasVoted = await _context.Votes
                     .AnyAsync(v => v.UserId == userId && v.PollingRoomId == id)
@@ -53,7 +53,6 @@ namespace Voting_Test.Controllers
 
             return View(viewModel);
         }
-
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

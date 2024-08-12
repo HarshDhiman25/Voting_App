@@ -74,6 +74,33 @@ namespace Voting_Test.Controllers
                 return Redirect("/Identity/Account/Login");
             }
 
+            var pollsToCheck = await _context.Polls
+                .Where(p => p.EndDate <= DateTime.Now && !_context.PollWinnerss.Any(w => w.PollId == p.PollId))
+                .ToListAsync();
+
+            foreach (var poll in pollsToCheck)
+            {
+                var voteCount = await _context.Votes
+                    .Where(v => v.PollId == poll.PollId)
+                    .CountAsync();
+
+                if (voteCount > 0)
+                {
+                    var winner = new PollWinners
+                    {
+                        PollId = poll.PollId,
+                        PollQuestion = poll.Question,
+                        PollingRoomName = (await _context.PollingRooms.FindAsync(poll.PollingRoomId))?.Name,
+                        TotalVotes = voteCount,
+                        WinnerMessage = $"This {poll.Question} is the winner!",
+                        WinningDate = DateTime.Now
+                    };
+
+                    _context.PollWinnerss.Add(winner);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
             var votes = await _context.Votes
                 .Include(v => v.Poll)
                 .Include(v => v.PollingRoom)
@@ -93,8 +120,14 @@ namespace Voting_Test.Controllers
                 .ToList();
 
             ViewBag.VoteStats = voteStats;
+
+            // Retrieve winners
+            var pollWinners = await _context.PollWinnerss.ToListAsync();
+            ViewBag.PollWinners = pollWinners;
+
             return View(votes);
         }
+
 
     }
 }

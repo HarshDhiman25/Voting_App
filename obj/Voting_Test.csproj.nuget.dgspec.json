@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\Voting_Test.csproj": {}
+    "C:\\My project\\Voting_App\\Voting_Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\Voting_Test.csproj": {
+    "C:\\My project\\Voting_App\\Voting_Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\Voting_Test.csproj",
+        "projectUniqueName": "C:\\My project\\Voting_App\\Voting_Test.csproj",
         "projectName": "Voting_Test",
-        "projectPath": "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\Voting_Test.csproj",
+        "projectPath": "C:\\My project\\Voting_App\\Voting_Test.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Documents\\Github\\Voting_App\\obj\\",
+        "outputPath": "C:\\My project\\Voting_App\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
